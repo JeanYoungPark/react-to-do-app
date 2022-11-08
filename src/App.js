@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import "./App.css";
 import Form from "./components/Form";
 import Lists from "./components/Lists";
@@ -20,6 +20,14 @@ export default function App() {
     setTodoData((prev) => [...prev, newTodo]);
     setValue("");
   };
+
+  const handleClick = useCallback(
+    (id) => {
+      let newTodoData = todoData.filter((data) => data.id !== id);
+      setTodoData(newTodoData);
+    },
+    [todoData]
+  );
 
   return (
     <div className="flex items-center justify-center w-screen h-screen bg-blue-100">
